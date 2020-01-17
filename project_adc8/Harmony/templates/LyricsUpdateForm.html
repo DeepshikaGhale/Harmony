@@ -7,12 +7,13 @@
     <title>Update Form </title>
 </head>
 <body>
-    <form method="POST" action="update/{{Lyrics.id}}">
+    <form method="POST" action="update/{{lyrics.id}}">
         {% csrf_token %}
-        Update Username: <input name="Lyrics_UserName" type="text" value ={{Lyrics.UserName}}> <br>
-        Update SongName: <input name="Lyrics_SongName" type="text" value={{Lyrics.SongName}}> <br>
-        Update Lyrics: <input name="Lyrics_Lyric" type="text" value={{Lyrics.Lyric}}> <br>
+        Update Username: <input name="Lyrics_UserName" type="text" value ={{lyrics.UserName}}> <br>
+        Update SongName: <input name="Lyrics_SongName" type="text" value={{lyrics.SongName}}> <br>
+        Update Lyrics: <input name="Lyrics_Lyric" type="text" value={{lyrics.Lyric}}> <br>
         <input type="submit">
+       
     </form>
 
 </body>

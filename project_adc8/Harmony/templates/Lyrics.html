@@ -7,15 +7,17 @@
     <title>List of Lyrics</title>
 </head>
 <body>
-    <h1> List of Lyrics</h1>
-    {% for Lyrics in Lyrics %}
-    Lyrics's Uploader : {{Lyrics.UserName}} <br>
-    Lyrics's SongName : {{Lyrics.SongName}} <br>
-    Lyrics's Lyric : {{Lyrics.Lyric}}<br>
-    <a href="edit/{{Lyrics.id}}">Edit this</a> <br>
-    ======================================== <br>
-    {% empty %}
+    <form  method="post" action="update/{{lyric.id}}">
+        <h1> List of Lyrics</h1>
+        {% for lyrics in lyrics %}
+        Lyrics's Uploader : {{lyrics.UserName}} <br>
+        Lyrics's SongName : {{lyrics.SongName}} <br>
+        Lyrics's Lyric : {{lyrics.Lyric}}<br>
+        <a href="edit/{{lyrics.id}}">Edit this</a> <br>
+        ======================================== <br>
+        {% empty %}
         There are no Lyrics availble.
-    {% endfor %}
+        {% endfor %}
+    </form>
 </body>
 </html>
