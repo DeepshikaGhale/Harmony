@@ -2,7 +2,7 @@ from django.shortcuts import render,redirect
 from django.http import HttpResponse,HttpResponseForbidden
 from django.template import Template,Context
 from .models import *
-from django.contrib.auth import authenticate,login,logout
+from django.contrib.auth import authenticate, login, logout
 #from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 
@@ -77,13 +77,13 @@ def view_login_user(request):
             login(request,user)
             return render(request,"page.html")
         else:
-            return redirect("Login") 
+            return redirect("login") 
 
 def view_logout(request):
     if (not request.user.is_authenticated):
         return HttpResponseForbidden('Please LogIn for Logging out!')
-        logout(request)
-        return render(request,"login.html")
+    logout(request)
+    return redirect('login')
 
 
 def home(request):
