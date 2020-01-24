@@ -1,0 +1,25 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width initial-scale= 1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    
+    <link href="{% static 'css/bootstrap.min.css'%}" rel="stylesheet">
+    <link href="{% static 'css/Music.css'%}" rel="stylesheet">
+    <title>Music Submition</title>
+</head>
+<body>
+    <div class="form-style">
+        <h1>Music Submission</h1>
+        <form method="POST" action="save"> 
+            {% csrf_token %}
+            Username : <input type="text" name="Username" placeholder="Username"><br>
+            Song Name : <input type="text" name="Song_Name" placeholder="Song Name"><br>
+            Feedbacks : <textarea name="Feedback" placeholder="Type why you want the Song and feedbacks Here..."></textarea>
+        <button type="submit">Submit</button>
+        </form>
+    </div>
+</body>
+</html>
