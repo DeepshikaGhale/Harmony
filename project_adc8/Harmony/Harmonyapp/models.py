@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.contrib.auth.models import User
 
 #class LyricManager(models.Manager):
     #pass
@@ -13,4 +13,7 @@ class Lyrics(models.Model):
     #objects = LyricManager()
     def __str__(self):
         return self.UserName + ' ' + self.SongName + ' ' + self.Lyric 
+
+
+
              

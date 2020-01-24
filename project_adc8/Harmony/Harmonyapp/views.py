@@ -1,8 +1,10 @@
 from django.shortcuts import render,redirect
-from django.http import HttpResponse
+from django.http import HttpResponse,HttpResponseForbidden
 from django.template import Template,Context
 from .models import *
-
+from django.contrib.auth import authenticate,login,logout
+#from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 
 # Create your views here.
 def view_Lyrics_page(request):
@@ -52,4 +54,39 @@ def view_update_form_data_in_db(request,ID):
     Lyrics_obj.SongName =request.POST['Lyrics_SongName']
     Lyrics_obj.Lyric = request.POST['Lyrics_Lyric']
     
-    return HttpResponse("Record Updated!")     
+    return HttpResponse("Record Is Succesfully Updated!")     
+
+def view_register_user(request):
+    if request.method =="GET":
+        return render(request,'register.html')
+    else:
+        print(request.POST)
+        user = User.objects.create_user(username=request.POST['input_Username'],password=request.POST['input_Password'],email=request.POST['input_Email'])
+        user.save()
+        return HttpResponse("Signup Successful")
+
+
+def view_login_user(request):
+    if request.method =="GET":
+        return render (request,'login.html')
+    else:
+        print(request.POST)
+        user = authenticate(username=request.POST['input_Username'],password=request.POST['input_Password'])
+        print(user)
+        if user is not None:
+            login(request,user)
+            return render(request,"page.html")
+        else:
+            return redirect("Login") 
+
+def view_logout(request):
+    if (not request.user.is_authenticated):
+        return HttpResponseForbidden('Please LogIn for Logging out!')
+        logout(request)
+        return render(request,"login.html")
+
+
+def home(request):
+    return render(request, 'home.html')
+
+
